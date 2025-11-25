@@ -1,6 +1,6 @@
 // src/services/user.service.ts
 import jwt from "jsonwebtoken";
-import { AllUsersResposeDtoType, CreatedUserDtoType, UserResponseDtoType } from "../dtos/user.dto.ts";
+import { AllUsersResposeDtoType, CreatedUserDtoType, UpdatedUserDtoType, UserResponseDtoType } from "../dtos/user.dto.ts";
 import { UserRepositoryInterface } from "../interfaces/user.repository.interface.ts";
 
 export class UserService {
@@ -8,7 +8,7 @@ export class UserService {
 
     constructor(
         userRepo: UserRepositoryInterface
-    ) { 
+    ) {
         this.userRepo = userRepo;
     }
 
@@ -35,7 +35,7 @@ export class UserService {
             return response;
         }
 
-        
+
         // Check for existing username
         const existingBuyerByUsername = this.userRepo.findUserByUsername(username);
         if (existingBuyerByUsername) {
@@ -46,9 +46,9 @@ export class UserService {
             };
             return response;
         }
-        
+
         let newUser;
-        
+
         // Check for existing email
         const existingUserByEmail = this.userRepo.findUserByEmail(email);
         if (existingUserByEmail) {
@@ -108,7 +108,7 @@ export class UserService {
         return respose;
     };
 
-    updateUser = (id: string, userData: CreatedUserDtoType): UserResponseDtoType | null => {
+    updateUser = (id: string, userData: UpdatedUserDtoType): UserResponseDtoType | null => {
         const updatedUser = this.userRepo.updateUser(id, userData);
         if (!updatedUser) {
             const response: UserResponseDtoType = {
@@ -131,6 +131,7 @@ export class UserService {
                 age: updatedUser.age,
                 createAt: updatedUser.createdAt,
                 updatedAt: updatedUser.updatedAt
+                // ...updatedUser
             }
         };
         return response;
@@ -150,7 +151,7 @@ export class UserService {
 
         const response: UserResponseDtoType = {
             success: true,
-            message: "User has bee deleted successfully.",
+            message: "User has been deleted successfully.",
             status: 200,
         };
         return response;

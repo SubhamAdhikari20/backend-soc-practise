@@ -9,6 +9,10 @@ export const CreatedUserDto = userSchema;
 
 export type CreatedUserDtoType = z.infer<typeof CreatedUserDto>;
 
+export const UpdatedUserDto = userSchema.partial();
+
+export type UpdatedUserDtoType = z.infer<typeof UpdatedUserDto>;
+
 
 export const UserResponseDto = z.object({
     id: z.string(),
@@ -31,6 +35,6 @@ export type UserResponseDtoType = CommonApiResponseType & {
     user?: z.infer<typeof UserResponseDto> | null;
 }
 
-export type AllUsersResposeDtoType = CommonApiResponseType &  {
+export type AllUsersResposeDtoType = CommonApiResponseType & {
     users?: z.infer<typeof UserResponseDto>[] | null;
 }

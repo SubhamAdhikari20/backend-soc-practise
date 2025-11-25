@@ -1,4 +1,4 @@
-// src/interfaces/user.repository.ts
+// src/repositories/user.repository.ts
 import { UserRepositoryInterface } from "../interfaces/user.repository.interface.ts";
 import { User, UserDocument } from "../types/user.type.ts";
 
@@ -30,7 +30,7 @@ export class UserRepository implements UserRepositoryInterface {
             updatedAt: new Date(),
         };
 
-        this.users.push(updatedUser);
+        this.users[index] = updatedUser;
         return updatedUser;
     };
 

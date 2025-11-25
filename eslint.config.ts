@@ -1,14 +1,24 @@
-import js from "@eslint/js"; 
 import globals from "globals";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
     {
-        files: ["**/*.{js,mjs,cjs}"],
-        plugins: { js },
-        extends: [js.configs.recommended],  // "js/recommended"
+        files: ["**/*.{js,mjs,cjs,ts}"],
         languageOptions: {
-            globals: globals.node
+            globals: globals.node,
+            ecmaVersion: "latest",
+            sourceType: "module",
+        },
+        settings: {
+            "import/parsers": {
+                "@typescript-eslint/parser": [".ts", ".tsx", ".js", ".jsx"],
+            },
+            "import/resolver": {
+                typescript: {
+                    alwaysTryTypes: true,
+                    project: "./tsconfig.json",
+                },
+            },
         },
         rules: {
             "no-unused-vars": "off",

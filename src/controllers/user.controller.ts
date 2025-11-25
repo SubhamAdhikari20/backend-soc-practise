@@ -1,6 +1,6 @@
 // src/controllers/user.controller.ts
 import { Request, Response } from "express";
-import { CreatedUserDto } from "../dtos/user.dto.ts";
+import { CreatedUserDto, UpdatedUserDto } from "../dtos/user.dto.ts";
 import { UserService } from "../services/user.service.ts";
 import { UserRepositoryInterface } from "../interfaces/user.repository.interface.ts";
 
@@ -45,7 +45,7 @@ export class UserController {
         try {
             const userId = req.params.id;
             const body = req.body;
-            const validatedData = CreatedUserDto.safeParse(body);
+            const validatedData = UpdatedUserDto.safeParse(body);
 
             if (!validatedData.success) {
                 return res.status(400).json({ success: false, message: validatedData.error });
