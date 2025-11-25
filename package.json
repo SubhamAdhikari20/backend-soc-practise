@@ -2,21 +2,33 @@
   "name": "express-refactoring-exercise",
   "version": "1.0.0",
   "description": "A badly structured Express server for refactoring practice",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "keywords": ["express", "typescript", "refactoring", "exercise"],
+  "keywords": [
+    "express",
+    "typescript",
+    "refactoring",
+    "exercise"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.10.5",
+    "eslint": "^9.39.1",
+    "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
